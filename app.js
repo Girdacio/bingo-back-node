@@ -1,4 +1,5 @@
 const express = require('express');
+const bingoManager = require('./bingo-manager');
  
 const cors = require('cors');
 const helmet = require('helmet');
@@ -16,6 +17,11 @@ app.use(morgan('dev'));
  
 app.post('/login', (req, res, next) => {
     res.json({ token: '123456' });
+});
+
+app.post('/bingo', (req, res, next) => {
+    let bingo = bingoManager.addBingo(req.body);
+    res.json(bingo);
 });
  
 module.exports = app;

@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const bingoManager = require('./bingo-manager');
 
 function onError(ws, err) {
     console.error(`onError: ${err.message}`);
@@ -7,6 +8,7 @@ function onError(ws, err) {
 function onMessage(ws, data) {
     console.log(`onMessage: ${data}`);
     ws.send(`recebido!`);
+    ws.send(bingoManager.getBingos());
 }
 
 function onConnection(ws, req) {
